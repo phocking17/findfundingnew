@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'core/main.css' %}">
+</head>
+<body class="results">
+
+	
+<div class="navbar">
+	<div class="logo">
+		<a href="../.." style="text-decoration: none"><p style="margin:0px">FindFunding</p></a>
+	</div>
+		<a href="../../aboutme" class="navtab" style="grid-column:3">Match</a>
+		<a href="../../quickfind" class="navtab" style="grid-column:4">Categories</a>
+		<a href="../../all" class="navtab" style="grid-column:5">All Programs</a>
+</div>
+
+
+
+<div class = "wrapper">
+
+
+<div class="div-title">
+{% if tag %}
+<h4 class="result-title">Funding related to {% if seminame %}'{{ seminame }} : {% endif %} {% if tag %} '{{ tag }}' {% endif %}</h4>
+{% endif %}
+{% if customcheck %}
+<h4 class="result-title">Resources for You</h4>
+{% endif %}
+{% if all %}
+<h4 class="result-title">All Opportunities</h4>
+{% endif %}
+</div>
+
+
+{% for org in org_list %}
+
+<div class="org-box">
+	<div class="image-box">
+		<img class = "org-image" src="../../{{ org.0.org_image }}">
+	</div>
+	<div class="info-box">
+		<h5 class="org-title">{{ org.0.name }}</h5><br>
+		<h5 class="org-detail">{{ org.0.city }}, {{org.0.state}}</h5>
+	</div>
+
+	{% if org.1 %}
+	<div class="metric-holder">
+	<div class="full-metric">
+		<div class="partial-metric" style="width:{{ org.1 }}px">
+		</div>
+	</div>
+	<h5 class="org-detail">{{ org.1 }}% Match</h5>
+	</div>
+	{% endif %}
+
+	<a class="cta-button" href="../../program/{{ org.0.name}}">
+		<h3 style="margin:5%">Learn More</h3>
+	</a>
+</div>
+
+{% endfor %}
+
+
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

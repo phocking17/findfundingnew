@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'core/main.css' %}">
+</head>
+<body class="quickfind">
+
+
+<div class="block-item">
+<h3>Find Resources by Technology</h3>
+<ul class="categories-list">
+	{% for archtag in arching_tag %}
+	<a href="results/{{ archtag }}"><li class="categories-item">{{ archtag }}</li></a>
+	{% endfor %}
+</ul>
+</div>
+
+
+<div class="block-item">
+<h3>Find Resources by Category</h3>
+
+{% for tag_type in tags %}
+<h4>{{ tag_type.0.name }}</h4>
+<ul class="categories-list">
+	{% for item in tag_type.1 %}
+	<a href="results/{{ tag_type.0.name }}/{{ item }}"><li class="categories-item">{{ item }}</li></a>
+	{% endfor %}
+</ul>
+{% endfor %}
+</div>
+
+</body>
+</html>

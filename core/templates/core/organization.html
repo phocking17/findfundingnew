@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://kit.fontawesome.com/353be4f6f3.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'core/main.css' %}">
+</head>
+<body class="organization">
+
+
+
+
+<div class="navbar">
+	<div class="logo">
+		<a href="../.." style="text-decoration: none"><p style="margin:0px">FindFunding</p></a>
+	</div>
+		<a href="../../aboutme" class="navtab" style="grid-column:3">Match</a>
+		<a href="../../quickfind" class="navtab" style="grid-column:4">Categories</a>
+		<a href="../../all" class="navtab" style="grid-column:5">All Programs</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="org-wrapper">
+	<div class = "org-header">
+		<div class="image-box-org">
+			<img src="../../{{ organization.org_image }}" class="org-image">
+		</div>
+		<div style="width: 50%">
+			<h1 class="org-title">{{ organization.name }}</h1>
+			<div class = "org-contact">
+				<h1 class="org-detail">{{ organization.city }}, {{ organization.state }}</h1>
+				<p class="break"></p>
+				<p>Website: <a href="{{ organization.website }}" target="_blank">{{ organization.website }}</a></p>
+				<a href="{{ organization.website }}" target="_blank"><i class="fas fa-compass"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class = "org-body">
+		<p style="font-weight: bold; color:#fff">About {{ organization.name }}</p>
+		<p style="color:#fff">{{ organization.description }}</p>
+	</div>
+
+
+{% if contact %}
+	<div class = "org-cperson">
+		<div class="image-box-person">
+			<img src="../../{{ organization.contact_image }}" class="org-image">
+		</div>
+		<div class="contact">
+
+			<p style="font-weight: bold; font-size: 35px">Primary Contact: {{ contact.0.first_name }} {{ contact.0.last_name }}</p>
+			<p class="org-detail">Email: <a href="mailto:{{ organization.contact_email }}">  {{ contact.0.email }}</a></p>
+		</div>
+	</div>
+{% endif %}
+
+{% for pro in programs %}
+	<div class = "org-cperson">
+		<div class="image-box-person">
+			<img src="../../{{ organization.contact_image }}" class="org-image">
+		</div>
+		<div class="contact">
+
+			<p style="font-weight: bold; font-size: 35px">Program Name: {{ pro.name }}</p>
+			<p class="org-detail">Date: {{ pro.dates }}</p>
+			<p><a href="../../program/{{ pro.name }}">See Program</a></p>
+		</div>
+	</div>
+{% endfor %}
+
+	<div class = "org-tags">
+		<h3>See Related Organizations:</h3>
+		<a href="../../results/{{ tag }}" class="org-button"><p style="color:#fff">{{ overall_tags }}</p></a>
+	</div>
+
+</div>
+</body>
+</html>

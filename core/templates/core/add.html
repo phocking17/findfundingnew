@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'core/main.css' %}">
+</head>
+<body style="background-color: #fdc924">
+
+<div class="opener">
+<h2>
+	Add Your Organization!
+</h2>
+</div>
+<form action="/added" method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
